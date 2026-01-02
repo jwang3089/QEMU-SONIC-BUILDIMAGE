@@ -1,0 +1,151 @@
+git@github.com
+jwang3089
+Aruba2786
+ALL DIRECTORIES:
+
+/media/jack/c68a07af-a911-45e8-acd0-81a9208823c1/home
+
+
+to checkin to my repositories,remove all .git
+
+for sub-muduiles:
+
+jack@jack-Precision-5560:~/QEMU/SONIC/sonic-buildimage-checkin$ vi .gitmodules 
+
+
+git submodule status
+
+jack@jack-Precision-5560:~/QEMU/SONIC/sonic-buildimage-checkin$ git submodule status
+ 7fb67de3124c26bab817aa6c457dd64c52afa7ec platform/barefoot/sonic-platform-modules-arista (heads/master)
+ be155cce3ec8451bc98336620f20afa27754c955 platform/broadcom/saibcm-modules-dnx (remotes/origin/sdk-6.5.32-dnx-gpl)
+ 7fb67de3124c26bab817aa6c457dd64c52afa7ec platform/broadcom/sonic-platform-modules-arista (heads/master)
+
+
+git config --file .gitmodules --get-regexp path
+
+jack@jack-Precision-5560:~/QEMU/SONIC/sonic-buildimage-checkin$ git config --file .gitmodules --get-regexp path
+submodule.sonic-swss-common.path src/sonic-swss-common
+submodule.sonic-linux-kernel.path src/sonic-linux-kernel
+submodule.sonic-sairedis.path src/sonic-sairedis
+
+
+ssh-keygen -t ed25519 -C "jwang4024@yahoo.com"
+jack@jack-Precision-5560:~/.ssh$ vi id_ed25519.pub 
+
+
+
+
+git clone git@github.com:jwang3089/QEMU-SONIC-BUILDIMAGE.git
+
+git clone git@github.com:jwang3089/QEMU-SONIC-BUILDIMAGE.git
+cd QEMU-SONIC-BUILDIMAGE
+
+echo "# QEMU-SONIC-BUILDIMAGE" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:jwang3089/QEMU-SONIC-BUILDIMAGE.git
+git push -u origin main
+
+
+# SONIC-BUILDIMAGE
+git remote add upstream https://github.com/sonic-net/sonic-buildimage.git
+
+git remote -v
+
+git fetch upstream
+git checkout -b master upstream/master
+git submodule update --init --recursive
+git status
+git submodule status
+git push -u origin master
+
+
+git branch -D main          # deletes the local main branch
+git branch -m master main   # rename master to main
+git push -u origin main     # push the renamed branch to GitHub
+git push origin --delete master  # optional: remove old master on remote
+git push -u origin main --force
+
+
+make init
+make distclean || true
+SONiC build system has conditional branches for:
+
+trixie (Debian 13)
+
+bookworm (12)
+
+bullseye (11)
+rm -rf target
+rm -rf buildinfo
+rm -rf .config
+rm -rf .cache
+rm -rf Makefile.work
+rm -rf target/debs/bookworm
+rm -rf target/debs/bullseye
+rm -rf target/sonic-slave-*
+docker images | grep sonic | awk '{print $3}' | xargs -r docker rmi -f
+
+vi Makefile.works
+BLDENV := bullseye
+
+vi Makefile
+# SONiC make file
+
+NOJESSIE ?= 1
+NOSTRETCH ?= 1
+NOBUSTER ?= 1
+NOBULLSEYE ?= 1
+NOBOOKWORM ?= 0
+NOTRIXIE ?= 0
+
+
+
+make configure PLATFORM=vs
+# SONIC
+make SONIC_BUILD_JOBS=4 target/sonic-vs.img.gz 
+# ONIE
+sudo apt install texinfo
+sudo apt install help2man
+sudo apt install gawk
+sudo apt install libtool
+sudo apt install libtool-bin
+sudo apt install libncurses5-dev libncursesw5-dev
+sudo apt install gcc-11 g++-11
+export CC=gcc-11
+export CXX=g++-11
+
+unset CC
+unset CXX
+~/QEMU/SONIC/onie/build/x-tools/x86_64-g8.3.0-lnx5.4.86-uClibc-ng-1.0.38/build
+./build/build/x86_64-onie-linux-uclibc/buildtools/bin/x86_64-build_pc-linux-gnu-gcc
+
+git clone https://github.com/opencomputeproject/onie.git
+cd onie/build-config
+make all
+
+
+cd target
+gzip -d sonic-vs.img.gz
+qemu-system-x86_64   -m 2048   -hda sonic-vs.img   -nographic   -enable-kvm   -cpu host   -net nic -net user,hostfwd=tcp::2222-:22
+sonic login:jack
+Password:YourPaSsWoRd
+
+
+jack@jack-Precision-5560:~/QEMU/SONIC/QEMU-SONIC-BUILDIMAGE$ cat /etc/os-release
+PRETTY_NAME="Ubuntu 24.04.3 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.3 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
